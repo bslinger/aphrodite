@@ -43,7 +43,7 @@ const injectStyleTag = (cssRules /* : string[] */) => {
     // $FlowFixMe
     const sheet = ((styleTag.styleSheet || styleTag.sheet /* : any */) /* : CSSStyleSheet */);
 
-    if (sheet.insertRule) {
+    if (process.env.NODE_ENV === 'production' && sheet.insertRule) {
         let numRules = sheet.cssRules.length;
         cssRules.forEach((rule) => {
             try {
